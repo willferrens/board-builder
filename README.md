@@ -4,4 +4,13 @@ An interactive program built in [Processing](https://processing.org/) that allow
 
 ## Usage
 
-etc...
+In order to interact with my program, 
+
+## Example JSON File
+
+When using
+```json
+[
+    { "id": 1, "name": "rah" }
+]
+```
