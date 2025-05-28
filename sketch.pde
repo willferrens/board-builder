@@ -95,19 +95,17 @@ void settings() {
 // of the screen and creates the 
 // seperate tab
 void setup() {
-  surface.setLocation(displayWidth / 6, displayHeight / 12); 
+  surface.setLocation(displayWidth / 12, displayHeight / 12); 
   
   t = new Tab(json, cols, 
-    json.getInt("width") / 5, json.getInt("height"), 
-    json.getInt("width") + displayWidth / 6 + 10, 
-    displayHeight / 12
+    json.getInt("width") + displayWidth / 12 + 10, displayHeight / 12,
+    json.getInt("width") / 5, json.getInt("height")
   );
   runSketch(new String[]{ "Tab" }, t);
   
   m = new Map(json, cols, 
-    displayWidth / 6, 
-    json.getInt("height") + displayHeight / 8, 
-    json.getInt("width") + json.getInt("width") / 5 + 10, displayHeight / 6
+    json.getInt("width") + displayWidth / 12 + json.getInt("width") / 5 + 20, displayHeight / 12, 
+    json.getInt("width") / 3, json.getInt("height")
   ); 
   runSketch(new String[]{ "Map" }, m);
 }

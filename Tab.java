@@ -12,11 +12,11 @@ public class Tab extends PApplet {
   private String[] cols;
   private processing.data.JSONObject json;
   
-  public Tab(processing.data.JSONObject j, String[] cs, int w, int h, int px, int py) {
+  public Tab(processing.data.JSONObject j, String[] cs, int x, int y, int w, int h) {
     this.w = w;
     this.h = h;
-    this.px = px;
-    this.py = py;
+    this.px = x;
+    this.py = y;
     this.json = j;
     
     this.cols = cs;
@@ -46,7 +46,7 @@ public class Tab extends PApplet {
       rect(0, i * (this.h / 12), this.w, this.h / 12);
       
       fill(0);
-      text((i) + "", 0, i * (this.h / 12), this.w, this.h / 12);
+      text((i < 9 ? i + 1 : 0) + "", 0, i * (this.h / 12), this.w, this.h / 12);
     }
     
     // ACTION TYPE INDICATOR
