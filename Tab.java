@@ -36,6 +36,7 @@ public class Tab extends PApplet {
     
     // TYPES LIST
     for (int i = 0; i < this.cols.length; i++) {
+
       int col = Integer.parseInt(this.cols[i], 16);
       fill(color(red(col), green(col), blue(col)));
       if (this.active == i) {

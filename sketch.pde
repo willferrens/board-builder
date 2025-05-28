@@ -10,7 +10,7 @@ Map m;
 // action variables
 int clickType = 0;
 boolean clickAction = true; // true is add, false is remove
-// colors for types
+// colors for types (last color is first since nums go 1-9-0)
 String[] cols = {
   "ff0000",
   "00ff00",
