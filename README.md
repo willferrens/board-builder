@@ -16,18 +16,36 @@ An interactive program built in [Processing](https://processing.org/) that allow
 
 ## Usage
 
-In order to run my program, you will need to download the Processing software. Once you have it downloaded, download all the proper files and folders and then open the main sketch.pde or any of the corresponding files to open the project in the Processing IDE.
+In order to run my program, you will need to download the Processing software. Once you have it downloaded, download all the proper files and folders and then open the main `sketch.pde` or any of the corresponding files to open the project in the Processing IDE.
 Once opened, running the program and following all prompts properly will allow for the best overall functionality of the program. Each section has directions that should be read carefully and needed to be adhered to in order for the world editor to work as intended.
 
 ### Example JSON File
 
-```json
+```perl
 [
-    { "x": 1, "y": 1, "type": 0 },
-    { "x": 4, "y": 7, "type": 2 },
-    { ... },
+    "grid": [
+        { "x": 1, "y": 1, "type": 0 },
+        { "x": 4, "y": 7, "type": 2 },
+        { ... },
+    ],
     "width": 800,
     "grid-size": 40,
     "height": 600
 ]
+```
+Each json file contains an overall `grid` array that contains block objects with their respective x and y coordinate and block type. Along with the overall array, the JSON also contains a `width`, `height`, and `grid-size` value for the overall implementation of the world. The way to properly map each block object to a 2D platformer world is to multiply its x or y coordinate by the map's grid size value.
+
+### Example Implementation in Processing
+
+```java
+    JSONObject json = loadJSONObject("data.json");
+    JSONArray grid = json.getJSONArray("grid");
+
+    for (int i = 0; i < grid.size(); i++) {
+        JSONObject block = grid.getJSONObject(i);
+
+        int xPosition = block.getInt("x") * json.getInt("grid-size");
+        int yPosition = block.getInt("y") * json.getInt("grid-size");
+        rect(xPosition, yPosition, json.getInt("grid-size"), json.getInt("grid-size"));
+    }
 ```
