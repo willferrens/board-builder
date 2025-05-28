@@ -33,19 +33,32 @@ Once opened, running the program and following all prompts properly will allow f
     "height": 600
 ]
 ```
-Each json file contains an overall `grid` array that contains block objects with their respective x and y coordinate and block type. Along with the overall array, the JSON also contains a `width`, `height`, and `grid-size` value for the overall implementation of the world. The way to properly map each block object to a 2D platformer world is to multiply its x or y coordinate by the map's grid size value.
+Each json file contains an overall `grid` array that contains block objects with their respective x and y coordinate and block type. Along with the overall array, the JSON also contains a `width`, `height`, and `grid-size` value for the overall implementation of the world. The `width` and `height` values are meant to be used as the overall window size of the program, and the way to properly map each block object to a 2D platformer world is to multiply its x or y coordinate by the map's grid size value.
 
 ### Example Implementation in Processing
 
 ```java
-    JSONObject json = loadJSONObject("data.json");
-    JSONArray grid = json.getJSONArray("grid");
+JSONObject json;
+JSONArray grid;
+
+void setup() {
+    json = loadJSONObject("data.json");
+    grid = json.getJSONArray("grid");
+
+    size(json.getInt("width"), json.getInt("height"));
+}
+
+void draw() {
+    background(0);
 
     for (int i = 0; i < grid.size(); i++) {
         JSONObject block = grid.getJSONObject(i);
-
         int xPosition = block.getInt("x") * json.getInt("grid-size");
         int yPosition = block.getInt("y") * json.getInt("grid-size");
+
+        fill(255);
         rect(xPosition, yPosition, json.getInt("grid-size"), json.getInt("grid-size"));
     }
+}
+
 ```
